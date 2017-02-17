@@ -11,6 +11,10 @@ let s:default_syntax = g:vimwiki_syntax_variables['default']
 
 
 
+" text: \\ <br>
+let s:default_syntax.rxBr = '\\\\'
+let s:default_syntax.char_br = '\\'
+
 " text: $ equation_inline $
 let s:default_syntax.rxEqIn = '\$[^$`]\+\$'
 let s:default_syntax.char_eqin = '\$'
