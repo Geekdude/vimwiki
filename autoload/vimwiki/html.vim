@@ -288,6 +288,11 @@ function! s:html_insert_contents(html_lines, content) abort
 endfunction
 
 
+function! s:tag_br(value) abort
+  return '<br>'
+endfunction
+
+
 function! s:tag_eqin(value) abort
   " mathJAX wants \( \) for inline maths
   return '\('.s:mid(a:value, 1).'\)'
@@ -609,6 +614,7 @@ endfunction
 
 function! s:process_tags_typefaces(line, header_ids) abort
   let line = a:line
+  let line = s:make_tag(line, vimwiki#vars#get_syntaxlocal('rxBr'), 's:tag_br')
   let line = s:make_tag(line, vimwiki#vars#get_syntaxlocal('rxItalic'), 's:tag_em')
   let line = s:make_tag(line, vimwiki#vars#get_syntaxlocal('rxBold'), 's:tag_strong', a:header_ids)
   let line = s:make_tag(line, vimwiki#vars#get_global('rxTodo'), 's:tag_todo')

@@ -158,6 +158,8 @@ let s:conceal = exists('+conceallevel') ? ' conceal' : ''
 if vimwiki#vars#get_global('conceal_onechar_markers')
   execute 'syn match VimwikiEqInChar contained /'.
         \ vimwiki#vars#get_syntaxlocal('char_eqin').'/'.s:conceal
+  execute 'syn match VimwikiBrChar contained /'.
+        \ vimwiki#vars#get_syntaxlocal('char_br').'/'.s:conceal
   execute 'syn match VimwikiBoldChar contained /'.
         \ vimwiki#vars#get_syntaxlocal('char_bold').'/'.s:conceal
   execute 'syn match VimwikiItalicChar contained /'.
@@ -209,6 +211,8 @@ execute 'syn match VimwikiLinkChar /'.vimwiki#vars#get_global('rxWikiInclSuffix1
 execute 'syn match VimwikiHeaderChar contained /\%(^\s*'.
       \ vimwiki#vars#get_syntaxlocal('rxH').'\+\)\|\%('.vimwiki#vars#get_syntaxlocal('rxH').
       \ '\+\s*$\)/'
+execute 'syn match VimwikiBrCharT contained /'
+      \ .vimwiki#vars#get_syntaxlocal('char_br').'/'
 execute 'syn match VimwikiEqInCharT contained /'
       \ .vimwiki#vars#get_syntaxlocal('char_eqin').'/'
 execute 'syn match VimwikiBoldCharT contained /'
@@ -269,6 +273,10 @@ elseif vimwiki#vars#get_global('hl_cb_checked') == 2
         \ .'/ contains=VimwikiNoExistsLink,VimwikiLink,VimwikiWeblink1,VimwikiWikiLink1,@Spell'
 endif
 
+execute 'syntax match VimwikiBr /'.vimwiki#vars#get_syntaxlocal('rxBr').
+      \ '/ contains=VimwikiBrChar'
+execute 'syntax match VimwikiBrT /'.vimwiki#vars#get_syntaxlocal('rxBr').
+      \ '/ contained contains=VimwikiBrCharT'
 
 execute 'syntax match VimwikiEqIn /'.vimwiki#vars#get_syntaxlocal('rxEqIn').
       \ '/ contains=VimwikiEqInChar,@NoSpell'
@@ -430,6 +438,7 @@ hi def link VimwikiPlaceholder SpecialKey
 hi def link VimwikiPlaceholderParam String
 hi def link VimwikiHTMLtag SpecialKey
 
+hi def link VimwikiBrChar VimwikiMarkers
 hi def link VimwikiEqInChar VimwikiMarkers
 hi def link VimwikiCellSeparator VimwikiMarkers
 hi def link VimwikiBoldChar VimwikiMarkers
@@ -442,6 +451,7 @@ hi def link VimwikiSubScriptChar VimwikiMarkers
 hi def link VimwikiCodeChar VimwikiMarkers
 hi def link VimwikiHeaderChar VimwikiMarkers
 
+hi def link VimwikiBrCharT VimwikiMarkers
 hi def link VimwikiEqInCharT VimwikiMarkers
 hi def link VimwikiBoldCharT VimwikiMarkers
 hi def link VimwikiItalicCharT VimwikiMarkers
