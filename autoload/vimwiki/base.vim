@@ -2090,6 +2090,7 @@ function! vimwiki#base#table_of_contents(create) abort
       let link = s:safesubstitute(link_tpl, '__LinkUrl__',
             \ '#'.link, '')
       let link = s:safesubstitute(link, '__LinkDescription__', desc, '')
+      let link = substitute(link, "''", "'", 'g')
       call add(lines, startindent.repeat(indentstring, lvl-1).bullet.link)
     endfor
 
