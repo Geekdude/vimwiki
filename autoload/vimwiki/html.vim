@@ -742,6 +742,7 @@ function! s:close_tag_table(table, ldest, header_ids)
     call s:sum_rowspan(table)
     call s:sum_colspan(table)
 
+    call add(ldest, "<div>")
     if table[0] ==# 'center'
       call add(ldest, "<table class='center'>")
     else
@@ -774,6 +775,7 @@ function! s:close_tag_table(table, ldest, header_ids)
       endfor
     endif
     call add(ldest, "</table>")
+    call add(ldest, "</div>")
     let table = []
   endif
   return table
